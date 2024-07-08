@@ -52,13 +52,13 @@ def auto_summarize(data: list) -> dict[str, Any] | None:
     if isinstance(val, (bool, box.BoxedBool)):
         return {
             "true_count": (true_count := sum(1 for x in data if x)),
-            "true_proportion": true_count / len(data),
-            "none_proportion": sum(1 for x in data if x is None) / len(data),
+            "true_fraction": true_count / len(data),
+            "none_fraction": sum(1 for x in data if x is None) / len(data),
         }
     elif isinstance(val, Number):
         return {
             "mean": np.mean(data).item(),
-            "none_proportion": sum(1 for x in data if x is None) / len(data),
+            "none_fraction": sum(1 for x in data if x is None) / len(data),
         }
     elif isinstance(val, dict):
         result = {}
